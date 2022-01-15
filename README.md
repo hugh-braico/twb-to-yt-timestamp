@@ -12,3 +12,8 @@ copied to your clipboard.
 
 It will also add some Skullgirls Oceania stuff, since that's what I use it for, but 
 you can just remove that stuff (or make your own build that doesn't have that stuff)
+
+## Note on compatibility
+
+Currently it only handles links that have a timestamp like `t=12345`, but I might add
+more later (eg. `t=1h16m23s`)
