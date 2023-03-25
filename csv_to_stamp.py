@@ -15,6 +15,15 @@ def hms_to_timestamp(h: int, m: int, s: int) -> str:
     return f"{h:01d}:{m:02d}:{s:02d}"
 
 
+def format_team(c1: str, c2: str, c3: str) -> str:
+    ret = c1
+    if c2 != "N":
+        ret += f"/{c2}"
+    if c3 != "N":
+        ret += f"/{c3}"
+    return ret
+
+
 def url_to_timestamp(url: str) -> str:
     timestamp_match = re.search(r'[?&]t=([0-9hms]+)', url)
 
@@ -50,15 +59,18 @@ def url_to_timestamp(url: str) -> str:
 
 if __name__ == '__main__':
     output = ""
-    output += "Bracket: \n"
+    output += "Timestamps: \n"
+    with open(sys.argv[1]) as csvfile: 
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            output += f"{url_to_timestamp(row['URL'])} {row['P1Name']} ({format_team(row['P1Char1'],row['P1Char2'],row['P1Char3'])}) vs {row['P2Name']} ({format_team(row['P2Char1'],row['P2Char2'],row['P2Char3'])}) \n"
+
+    output += "\nTimestamps without teams: \n"
     with open(sys.argv[1]) as csvfile: 
         reader = csv.DictReader(csvfile)
         for row in reader:
             output += f"{url_to_timestamp(row['URL'])} {row['P1Name']} vs {row['P2Name']}\n"
-    output += "\nTwitch: https://www.twitch.tv/skullgirlsoceania\n" \
-          "Twitter: https://twitter.com/SkullgirlsOCE\n" \
-          "Discord: https://discord.gg/WKG373f\n" \
-          "VOD archive: https://slowtrainroll.in/" 
+
     print(output)
     copy(output)
     input("\nPress Enter to continue...")

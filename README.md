@@ -10,9 +10,6 @@ Download the release exe from the
 then click-and-drag TWB-formatted csv files onto it. The output will automatically be
 copied to your clipboard.
 
-It will also add some Skullgirls Oceania stuff, since that's what I use it for, but 
-you can just remove that stuff (or make your own build that doesn't have that stuff)
-
 ## Building your own release exe
 
 ```bash
